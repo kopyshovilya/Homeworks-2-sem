@@ -3,9 +3,8 @@
 #include <vector>
 #include <algorithm>
 
-#define maxCountStudents 15
-
 class Course{
+const int maxCountStudents = 15;
 public:
     bool addStudent(std::string nameStudent)
     {
