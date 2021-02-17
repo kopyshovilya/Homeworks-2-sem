@@ -5,18 +5,16 @@
 
 class fraction{
 public:
-    fraction(){
-        numerator = 0;
-        denominator = 1;
-    }
+    fraction() : numerator(0), denominator(1) {}
+
+    fraction(fraction &a) : numerator(a.numerator), denominator (a.denominator) {}
+
     fraction(int a, int b){
         numerator = a;
         denominator = b;
+        reduction(this);
     }
-    fraction(fraction &a){
-        numerator = a.numerator;
-        denominator = a.denominator;
-    }
+
 //////////////////////////      Алгебраические операторы        ///////////////////////////////////
     fraction operator +(const fraction &b){
         fraction rez = fraction(numerator * b.denominator + b.numerator * denominator, denominator * b.denominator);
