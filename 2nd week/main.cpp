@@ -9,9 +9,7 @@ public:
 
     fraction(fraction &a) : numerator(a.numerator), denominator (a.denominator) {}
 
-    fraction(int a, int b){
-        numerator = a;
-        denominator = b;
+    fraction(int a, int b) : numerator(a), denominator (b){
         reduction(this);
     }
 
@@ -118,6 +116,10 @@ public:
     }
 //////////////////////////      Остальные методы класса        ///////////////////////////////////
     double frac2dec(){
+        return double (numerator) / double (denominator);
+    }
+
+    operator double(){
         return double (numerator) / double (denominator);
     }
 
