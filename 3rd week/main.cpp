@@ -99,8 +99,18 @@ public:
     }
 };
 
+double square(fig* f){
+    return f -> square();
+}
+
+double perimeter(fig* f){
+    return f -> perimeter();
+}
+
+double angles_amount(fig* f){
+    return f -> countAngles();
+}
 
 int main() {
     return 0;
 }
-
