@@ -107,7 +107,7 @@ double perimeter(fig* f){
     return f -> perimeter();
 }
 
-double angles_amount(fig* f){
+int angles_amount(fig* f){
     return f -> countAngles();
 }
 
