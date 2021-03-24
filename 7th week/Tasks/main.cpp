@@ -8,6 +8,7 @@
 #include <cstdlib>
 #include <vector>
 #include <iterator>
+#include <typeinfo>
 //#include <bits/stdc++.h>
 
 const int sizeOfDeque = 6;
@@ -43,8 +44,11 @@ int main() {
 //    std::iota(deq.begin(), deq.end(), 1);  // или так :)
     print(1, deq);
 //////////// Second task /////////////////////
-    for(int i = 1; i < rand() % sizeOfDeque + 1; i++){
-        deq.push_front(1 + rand() % sizeOfDeque);
+    std::uniform_int_distribution dist(1, sizeOfDeque);
+    
+    std::default_random_engine engin(std::chrono::steady_clock::now().time_since_epoch().count());
+    for(int i = 1; i < dist(engin) % sizeOfDeque + 1; i++){
+        deq.push_front(1 + dist(engin) % sizeOfDeque);
     }
     print(2, deq);
 //////////// Third task /////////////////////
@@ -55,7 +59,6 @@ int main() {
     std::sort(vec.begin(), vec.end(), std::greater<int>());
     print(4, vec);
 //////////// Fifth task /////////////////////
-    std::uniform_int_distribution distr(1, sizeOfDeque);
     std::default_random_engine engine(std::chrono::steady_clock::now().time_since_epoch().count());
     std::shuffle(std::begin(deq), std::end(deq), engine);
     print(5, deq);
@@ -81,14 +84,16 @@ int main() {
     print(11, deq);
 //////////// Twelfth task /////////////////////
     std::cout << "12) ";
-    std::transform(vec.begin(), vec.end(), vec.begin(),[](int a){std::cout << a << "\t";return a;});
+    for(auto it = vec.begin(); it != vec.end(); ++it) {
+        std::cout << *it << '\t';
+    }
 //////////// Thirteenth task /////////////////////
     std::cout << "\n13) ";
     std::for_each(deq.begin(), deq.end(), [](int a){std::cout << a << "\t";return a;});
 //////////// Fourteenth task /////////////////////
     auto minmaxDeq = std::minmax_element(deq.begin(), deq.end());
     auto minmaxVec = std::minmax_element(vec.begin(), vec.end());
-    std::cout << "\nDeque\tmin: " << deq[(minmaxDeq.first - deq.begin())] << "\tmax: " << deq[(minmaxDeq.second - deq.begin())];
-    std::cout << "\nVector\tmin: " << vec[(minmaxVec.first - vec.begin())] << "\tmax: " << vec[(minmaxVec.second - vec.begin())];
+    std::cout << "\nDeque\tmin: " << *minmaxDeq.first << "\tmax: " << *minmaxDeq.second;
+    std::cout << "\nVector\tmin: " << *minmaxVec.first << "\tmax: " << *minmaxVec.second;
     return 0;
 }
