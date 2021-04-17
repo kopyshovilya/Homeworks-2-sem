@@ -13,14 +13,16 @@ public:
 
     void listStudents() {
         for (auto i : marks)
-            std::cout << i.first << "\tgets " << i.second << '\t';
+            std::cout << i.first << "\tgets " << i.second << '\n';
     }
 
     auto find(std::string surname) {
-        for (auto i : marks) {
-            if (i.first == surname) 
-                return i.second;
-        }
+        auto pos = marks.find(surname);
+        return pos->second;
+//        for (auto i : marks) {
+//            if (i.first == surname)
+//                return i.second;
+//        }
     }
 
     std::list<std::string> range(int x) {
@@ -59,5 +61,6 @@ int main() {
 
     st.listStudents();
     st.standings();
+    std::cout << "\nPetrov" << st.find("Petrov");
     return 0;
 }
